@@ -19,8 +19,8 @@ import { ThemesService } from './services/themes.service';
     HeaderComponent,
     AsideComponent,
     FooterComponent,
+    ThemeListComponent,
     ThemeListItemComponent,
-    ThemeListComponent
   ],
   imports: [
     BrowserModule,
