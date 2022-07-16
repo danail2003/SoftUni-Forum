@@ -1,10 +1,10 @@
 import { IBase } from "./ibase";
 import { ITheme } from "./itheme";
-import { IUsers } from "./iusers";
+import { IUser } from "./iuser";
 
-export interface IPosts extends IBase {
+export interface IPost extends IBase {
     likes: [];
     text: string;
-    userId: IUsers;
+    userId: IUser;
     themeId: ITheme;
 }

@@ -12,6 +12,7 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
 import { UsersService } from './services/users.service';
 import { PostsService } from './services/posts.service';
 import { ThemesService } from './services/themes.service';
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ThemesService } from './services/themes.service';
     FooterComponent,
     ThemeListComponent,
     ThemeListItemComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,

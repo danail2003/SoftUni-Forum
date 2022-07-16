@@ -1,3 +1,3 @@
-export * from './iposts';
+export * from './ipost';
 export * from './itheme';
-export * from './iusers';
+export * from './iuser';
