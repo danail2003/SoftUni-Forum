@@ -4,32 +4,29 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { AsideComponent } from './aside/aside.component';
-import { FooterComponent } from './footer/footer.component';
-import { ThemeListItemComponent } from './theme-list-item/theme-list-item.component';
-import { ThemeListComponent } from './theme-list/theme-list.component';
-import { UsersService } from './services/users.service';
-import { PostsService } from './services/posts.service';
-import { ThemesService } from './services/themes.service';
-import { PostListComponent } from './post-list/post-list.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
+import { CoreModule } from './core/core.module';
+import { ThemesModule } from './feature/themes/themes.module';
+import { PagesModule } from './feature/pages/pages.module';
+import { RouterModule } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    AsideComponent,
-    FooterComponent,
-    ThemeListComponent,
-    ThemeListItemComponent,
-    PostListComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
+    CoreModule,
+    ThemesModule,
+    PagesModule,
+    AuthModule
   ],
-  providers: [UsersService, PostsService, ThemesService],
+  providers: [],
   bootstrap: [AppComponent, HeaderComponent, FooterComponent]
 })
 export class AppModule { }
