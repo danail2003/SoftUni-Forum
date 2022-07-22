@@ -78,6 +78,6 @@ p.error {
     padding-top: 0;
 }
 
-.input-error {
+.register .input-error {
     border-left-color: red;
 }
