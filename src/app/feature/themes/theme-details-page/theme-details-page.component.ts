@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { IPost, ITheme } from 'src/app/core/interfaces';
 import { ThemesService } from 'src/app/core/services/themes.service';
-import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-theme-details-page',
@@ -13,10 +14,10 @@ export class ThemeDetailsPageComponent implements OnInit {
   theme?: ITheme;
   canSubscribe: boolean;
 
-  constructor(private themesService: ThemesService, private activatedRoute: ActivatedRoute, private usersService: UsersService) { }
+  constructor(private themesService: ThemesService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
-  get isLogged(): boolean {
-    return this.usersService.isLogged;
+  get isLogged(): Observable<boolean> {
+    return this.authService.isLogged;
   }
 
   ngOnInit(): void {

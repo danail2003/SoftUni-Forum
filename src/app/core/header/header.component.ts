@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { IUser } from '../interfaces';
-import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +10,14 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  currentUser: Observable<IUser> = this.authService.currentUser;
+  isLogged = this.authService.isLogged;
 
-  constructor(private userService: UsersService) { }
-
-  get isLogged(): boolean {
-    return this.userService.isLogged;
-  }
-
-  get currentUser(): IUser {
-    return this.userService.currentUser;
-  }
+  constructor(private authService: AuthService, private router: Router) { }
 
   handleLogout(): void {
-    this.userService.logout();
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }

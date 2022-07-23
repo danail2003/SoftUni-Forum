@@ -6,6 +6,8 @@ import { UsersService } from './services/users.service';
 import { PostsService } from './services/posts.service';
 import { ThemesService } from './services/themes.service';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -14,6 +16,6 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [HeaderComponent, FooterComponent],
-  providers: [UsersService, PostsService, ThemesService]
+  providers: [UsersService, PostsService, ThemesService, {provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor}]
 })
 export class CoreModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
@@ -8,13 +10,13 @@ import { UsersService } from 'src/app/core/services/users.service';
 })
 export class ThemesPageComponent implements OnInit {
 
-  constructor(private userService: UsersService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  get isLogged(): boolean {
-    return this.userService.isLogged;
+  get isLogged(): Observable<boolean> {
+    return this.authService.isLogged;
   }
 
 }

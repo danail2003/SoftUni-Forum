@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    
     this.isEditClicked = false;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/core/services/users.service';
+import { AuthService } from 'src/app/auth.service';
 import { emailValidator } from '../utils';
 
 @Component({
@@ -10,7 +10,7 @@ import { emailValidator } from '../utils';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private userService: UsersService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   loginFormGroup: FormGroup = this.formBuilder.group({
     'email': new FormControl('', [Validators.required, emailValidator]),
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginHandler(): void {
-    this.userService.login(this.loginFormGroup.value).subscribe(() => {
+    this.authService.login(this.loginFormGroup.value).subscribe(() => {
       this.router.navigate(['/home']);
     });
   }
