@@ -9,13 +9,15 @@ import { ThemesRoutingModule } from './themes-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ThemeDetailsPageComponent } from './theme-details-page/theme-details-page.component';
 import { ThemesNewPageComponent } from './themes-new-page/themes-new-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AsideComponent, ThemeListComponent, ThemeListItemComponent, PostListComponent, ThemesPageComponent, ThemeDetailsPageComponent, ThemesNewPageComponent],
   imports: [
     CommonModule,
     SharedModule,
-    ThemesRoutingModule
+    ThemesRoutingModule,
+    FormsModule
   ]
 })
 export class ThemesModule { }

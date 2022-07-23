@@ -10,7 +10,6 @@ import { emailValidator } from '../utils';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   constructor(private userService: UsersService, private router: Router, private formBuilder: FormBuilder) { }
 
   loginFormGroup: FormGroup = this.formBuilder.group({
@@ -20,13 +19,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  handleLogin(): void {
-    this.userService.login();
-    this.router.navigate(['/home']);
-  }
 
   loginHandler(): void {
-    console.log()
+    this.userService.login(this.loginFormGroup.value).subscribe(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }
