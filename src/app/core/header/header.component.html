@@ -6,15 +6,15 @@
         <div class="mini-navbar">
             <ul *ngIf="!(isLogged|async)">
                 <li>
-                    <a routerLink="/login">Login</a>
+                    <a routerLink="/user/login">Login</a>
                 </li>
                 <li>
-                    <a routerLink="/register">Register</a>
+                    <a routerLink="/user/register">Register</a>
                 </li>
             </ul>
             <ul *ngIf="(isLogged|async)">
                 <li>
-                    <a routerLink="/profile">{{(currentUser|async).username}}'s profile</a>
+                    <a routerLink="/user/profile">{{(currentUser|async).username}}'s profile</a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" (click)="handleLogout()">Logout</a>
