@@ -34,5 +34,6 @@
                 <a routerLink="/themes/new">New Theme</a>
             </li>
         </ul>
+        <p *ngIf="!!message" [ngClass]="{'error-message': isMessageError, 'success-message': !isMessageError}" class="notification error-message">{{message}}</p>
     </nav>
 </header>
