@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { IUser } from 'src/app/core/interfaces';
-import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +15,10 @@ export class ProfileComponent implements OnInit {
   isEditClicked: boolean = false;
   currentUser: IUser;
 
-  constructor(private userService: UsersService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = this.userService.currentUser;
+    this.currentUser = this.authService.userProfile;
   }
 
   enterEditMode(): void {

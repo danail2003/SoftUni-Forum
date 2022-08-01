@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
-import { UsersService } from 'src/app/core/services/users.service';
 
 @Component({
   selector: 'app-themes-page',
@@ -18,5 +17,4 @@ export class ThemesPageComponent implements OnInit {
   get isLogged(): Observable<boolean> {
     return this.authService.isLogged;
   }
-
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { ICreateUserDto } from 'src/app/core/interfaces/icreate-user-dto';
-import { UsersService } from 'src/app/core/services/users.service';
 import { emailValidator, passwordMatch } from '../utils';
 
 @Component({

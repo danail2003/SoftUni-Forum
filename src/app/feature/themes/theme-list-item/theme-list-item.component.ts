@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { ITheme } from '../../../core/interfaces/itheme';

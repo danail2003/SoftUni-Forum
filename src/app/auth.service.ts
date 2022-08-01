@@ -10,9 +10,9 @@ import { ICreateUserDto } from './core/interfaces/icreate-user-dto';
 })
 export class AuthService {
   private _currentUser = new BehaviorSubject<IUser>(undefined);
-
   currentUser = this._currentUser.asObservable();
   isLogged = this.currentUser.pipe(map(user => !!user));
+  userProfile: IUser;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,6 +32,7 @@ export class AuthService {
 
   handleLogin(newUser: IUser): void {
     this._currentUser.next(newUser);
+    this.userProfile = newUser;
   }
 
   handleLogout(): void {
