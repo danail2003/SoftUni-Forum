@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.userProfile;
+    this.authService.currentUser.subscribe(user => this.currentUser = user);
   }
 
   enterEditMode(): void {

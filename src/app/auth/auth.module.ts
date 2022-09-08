@@ -6,6 +6,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailValidatorDirective } from './email-validator.directive';
+import { StoreModule } from '@ngrx/store';
+import { IAuthState, loginReducer, profileReducer } from './state';
 
 
 
@@ -21,6 +23,10 @@ import { EmailValidatorDirective } from './email-validator.directive';
     AuthRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    StoreModule.forFeature<IAuthState>('auth', {
+      profile: profileReducer,
+      login: loginReducer
+    })
   ]
 })
 export class AuthModule { }

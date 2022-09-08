@@ -10,6 +10,10 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './auth.service';
+import { StoreModule } from '@ngrx/store';
+import { currentUserReducer, IRootState } from './auth/state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,10 @@ import { AuthService } from './auth.service';
     HttpClientModule,
     CoreModule,
     PagesModule,
+    StoreModule.forRoot<IRootState>({
+      currentUser: currentUserReducer
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     {
