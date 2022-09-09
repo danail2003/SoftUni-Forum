@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailValidatorDirective } from './email-validator.directive';
 import { StoreModule } from '@ngrx/store';
 import { IAuthState, loginReducer, profileReducer } from './state';
-
-
+import { EffectsModule } from '@ngrx/effects';
+import { ProfileEffects } from './state/profile.effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { IAuthState, loginReducer, profileReducer } from './state';
     StoreModule.forFeature<IAuthState>('auth', {
       profile: profileReducer,
       login: loginReducer
-    })
+    }),
+    EffectsModule.forFeature([ProfileEffects])
   ]
 })
 export class AuthModule { }

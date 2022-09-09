@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { IUser } from "src/app/core/interfaces";
 import { ILoginState, IProfileState } from ".";
-import { enterEditMode, exitEditMode, login, logout, profileLoad } from "./actions";
+import { enterEditMode, exitEditMode, login, logout, profileLoad, profileLoadError } from "./actions";
 
 export const currentUserReducer = createReducer<IUser>(undefined,
     on(login, (_, action) => action.user),
@@ -10,7 +10,8 @@ export const currentUserReducer = createReducer<IUser>(undefined,
 
 export const profileReducer = createReducer<IProfileState>({
     currentProfile: undefined,
-    isEditClicked: false
+    isEditClicked: false,
+    hasError: false
 },
     on(profileLoad, (state, action) => {
         return {
@@ -28,6 +29,12 @@ export const profileReducer = createReducer<IProfileState>({
         return {
             ...state,
             isEditClicked: false
+        }
+    }),
+    on(profileLoadError, (state) => {
+        return {
+            ...state,
+            hasError: true
         }
     })
 );
