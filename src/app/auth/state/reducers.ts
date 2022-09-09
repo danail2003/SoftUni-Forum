@@ -10,7 +10,7 @@ export const currentUserReducer = createReducer<IUser>(undefined,
 
 export const profileReducer = createReducer<IProfileState>({
     currentProfile: undefined,
-    isInEditMode: false
+    isEditClicked: false
 },
     on(profileLoad, (state, action) => {
         return {
@@ -21,13 +21,13 @@ export const profileReducer = createReducer<IProfileState>({
     on(enterEditMode, (state) => {
         return {
             ...state,
-            isInEditMode: true
+            isEditClicked: true
         }
     }),
     on(exitEditMode, (state) => {
         return {
             ...state,
-            isInEditMode: false
+            isEditClicked: false
         }
     })
 );

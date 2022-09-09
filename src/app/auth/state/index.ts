@@ -9,7 +9,7 @@ export interface ILoginState {
 
 export interface IProfileState {
     currentProfile: IUser;
-    isInEditMode: boolean;
+    isEditClicked: boolean;
 }
 
 export interface IAuthState {

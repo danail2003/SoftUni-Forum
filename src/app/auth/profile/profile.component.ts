@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { IUser } from 'src/app/core/interfaces';
+import { enterEditMode, exitEditMode, IAuthModuleState, profileLoad } from '../state';
 
 @Component({
   selector: 'app-profile',
@@ -12,31 +15,38 @@ import { IUser } from 'src/app/core/interfaces';
 export class ProfileComponent implements OnInit {
   @ViewChild('editProfileForm') editProfile: NgForm;
 
-  isEditClicked: boolean = false;
-  currentUser: IUser;
+  isEditClicked$: Observable<boolean> = this.store.select(state => state.auth.profile.isEditClicked);
+  currentUser$: Observable<IUser> = this.store.select(state => state.auth.profile.currentProfile);
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private store: Store<IAuthModuleState>) { }
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe(user => this.currentUser = user);
+    this.authService.getProfile$().subscribe({
+      next: (user) => {
+        this.store.dispatch(profileLoad({ user: user }));
+      },
+      error: () => {
+      this.router.navigate(['/user/login'])
+      }
+    })
   }
 
-  enterEditMode(): void {
-    this.isEditClicked = true;
+  enterEditMode(currentUser): void {
+    this.store.dispatch(enterEditMode());
 
     setTimeout(() => {
       this.editProfile.form.patchValue({
-        email: this.currentUser.email,
-        username: this.currentUser.username,
-        'select-tel': this.currentUser.tel && this.currentUser.tel.length > 4 ?
-          this.currentUser.tel.substring(0, 4) : '',
-        tel: this.currentUser.tel && this.currentUser.tel.length > 4 ?
-          this.currentUser.tel.substring(4) : this.currentUser.tel
+        email: currentUser.email,
+        username: currentUser.username,
+        'select-tel': currentUser.tel && currentUser.tel.length > 4 ?
+        currentUser.tel.substring(0, 4) : '',
+        tel: currentUser.tel && currentUser.tel.length > 4 ?
+        currentUser.tel.substring(4) : currentUser.tel
       });
     });
   }
 
   updateProfile(): void {
-    this.isEditClicked = false;
+    this.store.dispatch(exitEditMode());
   }
 }
